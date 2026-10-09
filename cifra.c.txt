@@ -4,8 +4,8 @@
 
 int main() {
     int chave;
+    int razao;
     int direcao;
-    int razao = 4;
     char frase[500];
     char resultado[500];
 
@@ -18,6 +18,17 @@ int main() {
     chave = chave % 26;
     if (chave < 0) {
         chave = chave + 26;
+    }
+
+    printf("Qual razao voce quer usar? ");
+    if (scanf("%d", &razao) != 1) {
+        printf("Valor invalido. Digite um numero inteiro.\n");
+        return 1;
+    }
+
+    razao = razao % 26;
+    if (razao < 0) {
+        razao = razao + 26;
     }
 
     printf("Direcao do shift (1 = direita, 2 = esquerda): ");
