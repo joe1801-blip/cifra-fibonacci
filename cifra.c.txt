@@ -1,0 +1,72 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main() {
+    int chave;
+    int direcao;
+    int razao = 4;
+    char frase[500];
+    char resultado[500];
+
+    printf("Qual shift voce quer usar? ");
+    if (scanf("%d", &chave) != 1) {
+        printf("Valor invalido. Digite um numero inteiro.\n");
+        return 1;
+    }
+
+    chave = chave % 26;
+    if (chave < 0) {
+        chave = chave + 26;
+    }
+
+    printf("Direcao do shift (1 = direita, 2 = esquerda): ");
+    if (scanf("%d", &direcao) != 1) {
+        printf("Valor invalido. Digite 1 ou 2.\n");
+        return 1;
+    }
+    if (direcao != 1 && direcao != 2) {
+        printf("Opcao invalida. Digite 1 ou 2.\n");
+        return 1;
+    }
+    getchar();
+
+    printf("Oq vamos criptografar? ");
+    fgets(frase, 500, stdin);
+    frase[strcspn(frase, "\n")] = '\0';
+
+    int a = 1, b = 1;
+    int pa = chave;
+    int tamanho = strlen(frase);
+
+    for (int i = 0; i < tamanho; i++) {
+        char c = frase[i];
+
+        if (c >= 'a' && c <= 'z') {
+            c = c - 'a' + 'A';
+        }
+
+        if (c >= 'A' && c <= 'Z') {
+            int shift = (a + pa) % 26;
+            int pos;
+
+            if (direcao == 1) {
+                pos = (c - 'A' + shift) % 26;
+            } else {
+                pos = (c - 'A' - shift + 26) % 26;
+            }
+            resultado[i] = 'A' + pos;
+
+            int proximo = (a + b) % 26;
+            a = b;
+            b = proximo;
+            pa = (pa + razao) % 26;
+        } else {
+            resultado[i] = c;
+        }
+    }
+    resultado[tamanho] = '\0';
+
+    printf("%s\n", resultado);
+    return 0;
+}
