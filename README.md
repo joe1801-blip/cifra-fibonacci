@@ -92,7 +92,4 @@ Use o mesmo shift, a mesma razão e a direção **oposta**. Por exemplo, `ZLDOBV
 - Permitir cifrar arquivos de texto.
 - Versão em C++.
 
-## Autor
 
-Jonathan Tiburcio da Silva
-[GitHub](https://github.com/joe1801-blip) | [LinkedIn](https://linkedin.com/in/jonathan-tiburcio-96579a328)
